@@ -1,0 +1,22 @@
+<form class="form-control border-0" [formGroup]="form" (ngSubmit)="submit()">
+  <app-input
+    label="To"
+    type="email"
+    for="to"
+    [control]="form.controls.to"
+    [errors]="{ email: 'Invalid Email', required: 'Receiver email is required' }"
+  ></app-input>
+
+  <app-input label="From" for="from" [disabled]="true" [control]="form.controls.from"></app-input>
+
+  <app-input label="Subject" for="subject" [control]="form.controls.subject" [errors]="{ required: 'Subject is ' }"></app-input>
+
+  <app-input
+    controlType="textarea"
+    label="Text"
+    [errors]="{ required: 'Text Content is required' }"
+    [control]="form.controls.text"
+  ></app-input>
+
+  <button modal-action class="btn btn-primary mt-3">Send</button>
+</form>

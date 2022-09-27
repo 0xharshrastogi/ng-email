@@ -1,0 +1,16 @@
+<ng-template #loading> Fetching emails... </ng-template>
+
+<ng-container *ngIf="listEmails$ | async as emails; else loading">
+  <ng-container *ngIf="emails.length === 0; else emailList">
+    <h6>You got no email!</h6>
+  </ng-container>
+
+  <ng-template #emailList>
+    <ul class="list-group mt-3">
+      <a class="list-group-item" *ngFor="let email of emails" [routerLink]="[email.id]" routerLinkActive="active">
+        <h6 class="m-0">{{ email.subject }}</h6>
+        <p class="fs-6 m-0">{{ email.from }}</p>
+      </a>
+    </ul>
+  </ng-template>
+</ng-container>

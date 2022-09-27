@@ -1,0 +1,31 @@
+<h2>Sign In</h2>
+
+<form class="form mt-4" [formGroup]="form" (ngSubmit)="submit()">
+  <div class="alert alert-danger" *ngIf="error">
+    <p>{{ error.message }}</p>
+    <button class="btn btn-danger ms-auto" (click)="error = null">Close</button>
+  </div>
+
+  <app-input
+    label="User Name"
+    for="username"
+    placeholder="johnson0xxx"
+    [control]="form.controls.username"
+    [errors]="{ required: 'Username is required' }"
+  ></app-input>
+
+  <app-input
+    type="password"
+    label="Password"
+    for="password"
+    placeholder="Enter your password here..."
+    [control]="form.controls.password"
+    [errors]="{ required: 'Password is required' }"
+  ></app-input>
+
+  <div class="mt-3">
+    <button class="btn btn-primary" [disabled]="isSubmitting">
+      {{ !isSubmitting ? "Submit" : "Submitting..." }}
+    </button>
+  </div>
+</form>

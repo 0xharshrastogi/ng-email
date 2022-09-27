@@ -1,0 +1,16 @@
+:host .modal.show {
+  backdrop-filter: blur(2px);
+  background-color: #000000ad;
+}
+
+.modal-footer:empty {
+  display: none;
+}
+
+.modal-footer-default {
+  display: none;
+}
+
+.modal-footer:empty + .modal-footer-default {
+  display: flex;
+}

@@ -1,0 +1,22 @@
+<ng-container *ngIf="!email && error">
+  {{ error.message }}
+</ng-container>
+
+<ng-container *ngIf="email">
+  <div class="row">
+    <div class="col-sm-8">
+      <div>
+        <label class="form-label">Subject</label>: <strong>{{ email.subject }}</strong>
+      </div>
+      <div>{{ email.from }}</div>
+    </div>
+
+    <div class="col-sm-4 d-flex justify-content-end align-items-center">
+      <app-email-reply [email]="email"></app-email-reply>
+    </div>
+  </div>
+
+  <hr class="hr" />
+
+  <div class="" [innerHTML]="email.html"></div>
+</ng-container>

@@ -1,0 +1,24 @@
+<div class="modal fade show" id="staticBackdropLive" tabindex="-1" style="display: block" (click)="close()">
+  <div class="modal-dialog" (click)="$event.stopPropagation()">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLiveLabel">
+          <ng-content select="[modal-title]"></ng-content>
+        </h5>
+        <button type="button" class="btn-close" (click)="close()"></button>
+      </div>
+
+      <div class="modal-body">
+        <ng-content select="[modal-body]"></ng-content>
+      </div>
+
+      <!-- <div class="modal-footer">
+        <ng-content select="[modal-action]"></ng-content>
+      </div> -->
+
+      <div class="modal-footer modal-footer-default">
+        <button type="button" class="btn btn-secondary" (click)="close()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

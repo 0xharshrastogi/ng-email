@@ -1,0 +1,78 @@
+<div class="container mt-3">
+  <h3 class="mb-4">Create Your Account</h3>
+
+  <form
+    class="form-control border-0 p-0"
+    [formGroup]="form"
+    (ngSubmit)="submit()"
+  >
+    <div class="mb-3">
+      <app-input
+        label="Username"
+        for="username"
+        type="text"
+        placeholder="Enter username"
+        [control]="form.controls.username"
+        [errors]="{
+          required: 'Username is required',
+          minlength: 'Username should be of at least 3 letter',
+          pattern: 'Invalid Format',
+          uniqueUsername: 'Username is already taken',
+          noConnection: 'Unable to check, Not connected'
+        }"
+      ></app-input>
+    </div>
+
+    <div class="mb-3">
+      <app-input
+        label="Password"
+        for="password"
+        type="password"
+        placeholder="Type Password ..."
+        [control]="form.controls.password"
+        [errors]="{
+          required: 'Password is required',
+          minlength: 'Password must be of min length 4'
+        }"
+      ></app-input>
+    </div>
+
+    <div class="mb-3">
+      <app-input
+        label="Confirm Password"
+        for="confirmPassword"
+        type="password"
+        placeholder="Type Password ..."
+        [control]="form.controls.passwordConfirmation"
+        [errors]="{
+          required: 'Password is required'
+        }"
+      ></app-input>
+
+      <div
+        class="form-text text-danger"
+        *ngIf="form.invalid && (form.touched || form.dirty) && form.errors?.['match']"
+      >
+        Password and Confirm Password Don't Match
+      </div>
+    </div>
+
+    <!-- form error display -->
+    <div
+      class="form-text text-danger mb-3"
+      *ngIf="form.errors?.['noConnection']"
+    >
+      No internet connection detected, failed to sign up
+    </div>
+
+    <div class="form-text text-danger mb-3" *ngIf="form.errors?.['unknown']">
+      Something went wrong, failed to sign up
+    </div>
+
+    <div>
+      <button [disabled]="form | canShow" class="btn btn-primary" type="submit">
+        Submit
+      </button>
+    </div>
+  </form>
+</div>

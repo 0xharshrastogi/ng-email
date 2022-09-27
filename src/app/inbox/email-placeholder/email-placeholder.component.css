@@ -1,0 +1,7 @@
+:host section {
+  display: grid;
+}
+
+:host .alert {
+  margin: 0;
+}

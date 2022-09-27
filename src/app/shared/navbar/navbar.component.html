@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand-sm bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" [routerLink]="['']">Angular Email</a>
+
+    <button class="navbar-toggler" type="button">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="navbar-collapse collapse justify-content-end">
+      <div class="navbar-nav">
+        <!-- When Authenticated -->
+        <ng-container *ngIf="isAuthenticated$ | async; else whenNotAuthenticated">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['inbox']" [routerLinkActiveOptions]="{ exact: true }"
+            >Inbox</a
+          >
+          <button class="btn btn-primary" (click)="signout()">Sign Out</button>
+        </ng-container>
+
+        <!-- When Not Authenticated -->
+        <ng-template #whenNotAuthenticated>
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['']" [routerLinkActiveOptions]="{ exact: true }"
+            >Sign In</a
+          >
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['signup']">Sign Up</a>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</nav>

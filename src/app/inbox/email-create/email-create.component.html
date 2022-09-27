@@ -1,0 +1,18 @@
+<div class="d-grid">
+  <button class="btn btn-primary" (click)="isModalActive = true">{{ mode | titlecase }}</button>
+</div>
+
+<app-modal *ngIf="isModalActive" (close)="isModalActive = false">
+  <ng-container modal-title>New Email</ng-container>
+
+  <app-email-form
+    modal-body
+    [email]="{
+      from: username + '@angular-email.com',
+      subject: mode === 'reply' ? 'Reply:' + ' ' + email!.subject : '',
+      to: mode === 'reply' ? email!.to : '',
+      text: mode === 'reply' ? '---\n\n' + email!.from + ' wrote :\n> ' + email!.text : ''
+    }"
+    (formSubmit)="submit($event)"
+  ></app-email-form>
+</app-modal>

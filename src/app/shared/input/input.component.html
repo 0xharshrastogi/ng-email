@@ -1,0 +1,46 @@
+<label class="form-label fw-semibold" [attr.for]="for">{{ label }}</label>
+
+<ng-container *ngIf="controlType === 'input'">
+  <!-- Input With Control -->
+  <input
+    *ngIf="control; else withoutFormControlInput"
+    class="form-control"
+    [type]="type"
+    [name]="for"
+    [id]="for"
+    [attr.placeholder]="placeholder"
+    [formControl]="control"
+  />
+
+  <!-- Input without Control -->
+  <ng-template #withoutFormControlInput>
+    <input class="form-control" [type]="type" [name]="for" [id]="for" [attr.placeholder]="placeholder" />
+  </ng-template>
+</ng-container>
+
+<ng-container *ngIf="controlType === 'textarea'">
+  <!-- Input With Control -->
+  <textarea
+    *ngIf="control; else withoutFormControlTextarea"
+    class="form-control"
+    [name]="for"
+    [id]="for"
+    [attr.placeholder]="placeholder"
+    [formControl]="control"
+    cols="30"
+    rows="7"
+  ></textarea>
+
+  <!-- Input without Control -->
+  <ng-template #withoutFormControlTextarea>
+    <textarea class="form-control" [name]="for" [id]="for" [attr.placeholder]="placeholder" cols="30" rows="10"></textarea>
+  </ng-template>
+</ng-container>
+
+<ng-container *ngIf="errors && control && control.errors as inputErrors"
+  ><ng-container *ngIf="canDisplayHelpText"
+    ><div class="form-text text-danger" *ngFor="let inputError of inputErrors | keyvalue">
+      {{ errors[inputError.key] }}
+    </div></ng-container
+  ></ng-container
+>
